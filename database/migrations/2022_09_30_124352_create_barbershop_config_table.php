@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('barbershop_config', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 20);
-            $table->string('email', 500)->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->integer('barbershop_id');
-            $table->string('active', 1);
-            // $table->rememberToken();
+            $table->dateTime('open_time');
+            $table->dateTime('close_time');
+            $table->dateTime('close_lunch');
+            $table->dateTime('open_lunch');
+            $table->string('close_to_lunch', 1);
+            $table->integer('service_coast');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('barbershop_config');
     }
 };

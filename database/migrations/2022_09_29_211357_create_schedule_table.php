@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('schedule', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 20);
-            $table->string('email', 500)->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->integer('customer_id');
             $table->integer('barbershop_id');
-            $table->string('active', 1);
-            // $table->rememberToken();
+            $table->integer('barber_id');
+            $table->dateTime('date_hour_service');
+            $table->integer('service_status');
+            $table->string('active');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('schedule');
     }
 };
